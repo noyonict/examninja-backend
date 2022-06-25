@@ -49,25 +49,18 @@ class UserAdmin(ImportExportModelAdmin):
         return form
 
     fieldsets = (
-        (None, {'fields': ('phone_number', 'password')}),
         (_('Personal info'), {
-            'classes': ('wide', ),
-            'fields': ('full_name', 'nick_name')
+            'classes': ('wide', 'extrapretty'),
+            'fields': (('full_name', 'nick_name'), ('phone_number', 'gender'), ('rank', 'user_marks'), ('present_address', 'user_experience'), 'last_active_at')
         }),
         (_('Permissions'), {
-            'classes': ('wide', ),
+            'classes': ('wide', 'collapse'),
             'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')
         }),
         (_('Important dates'), {
             'classes': ('collapse', 'wide',),
             'fields': ('last_login', 'date_joined')
-        }),
-    )
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('phone_number', 'password1', 'password2'),
         }),
     )
     list_display = ('phone_number', 'full_name', 'nick_name', 'is_staff')

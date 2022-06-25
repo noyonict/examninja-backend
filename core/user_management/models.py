@@ -49,7 +49,7 @@ class User(AbstractUser):
     user_experience = models.PositiveIntegerField(default=0)
     user_marks = models.PositiveIntegerField(default=0)
     rank = models.PositiveIntegerField(null=True, blank=True)
-    last_login_time = models.DateTimeField(auto_now=True)
+    last_active_at = models.DateTimeField(auto_now=True)
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = []
     objects = UserManager()
