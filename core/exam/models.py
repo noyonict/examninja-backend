@@ -62,7 +62,13 @@ class Chapter(BaseModel):
         verbose_name_plural = "Chapters"
 
 
-# class BoardYear(BaseModel):
-#     name = models.CharField(max_length=150)
-#     year = models.CharField(max_length=4, null=True, blank=True)
-#     code = models.CharField(max_length=10, null=True, blank=True)
+class BoardYear(BaseModel):
+    name = models.CharField(max_length=150)
+    year = models.CharField(max_length=4, null=True, blank=True)
+    code = models.CharField(max_length=10, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Board Years"
