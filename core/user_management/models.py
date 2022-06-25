@@ -60,7 +60,7 @@ class User(AbstractUser):
         elif self.full_name:
             return self.full_name.title()
         else:
-            return self.phone
+            return self.phone_number
 
     class Meta:
         db_table = 'user'

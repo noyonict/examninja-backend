@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # custom app
     'user_management',
-    'exam'
+    'exam',
+
+    # import export app
+    'import_export'
 ]
 
 AUTH_USER_MODEL = 'user_management.User'
