@@ -164,7 +164,7 @@ class Question(BaseModel):
     chapter = models.ForeignKey(Chapter, on_delete=models.DO_NOTHING)
     uddipok = models.TextField()
     question = models.TextField()
-    image = models.ImageField(upload_to="question/images/")
+    image = models.ImageField(upload_to="media/question/images/")
     hints = models.TextField()
     boards = models.ManyToManyField(BoardYear)
 
