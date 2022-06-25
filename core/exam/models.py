@@ -4,7 +4,7 @@ from utils.base_model import BaseModel
 
 class ExamTitle(BaseModel):
     name = models.CharField(max_length=50, help_text='Name of the topic. (Ex: SSC)', unique=True)
-    expansion_of_name = models.CharField(max_length=150)
+    expansion_of_name = models.CharField(max_length=150, blank=True, null=True, help_text='Expansion of the name, if any.  (Ex: Secondary School Certificate')
 
     def __str__(self):
         return self.name

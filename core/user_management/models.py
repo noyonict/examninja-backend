@@ -44,12 +44,12 @@ class User(AbstractUser):
     full_name = models.CharField(max_length=150, blank=True, null=True)
     nick_name = models.CharField(max_length=50, blank=True, null=True)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
-    password_updated_at = models.DateTimeField(auto_now=True)
+    password_updated_at = models.DateTimeField()
     present_address = models.TextField()
     user_experience = models.PositiveIntegerField(default=0)
     user_marks = models.PositiveIntegerField(default=0)
     rank = models.PositiveIntegerField(null=True, blank=True)
-    last_active_at = models.DateTimeField(auto_now=True)
+    last_active_at = models.DateTimeField()
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = []
     objects = UserManager()

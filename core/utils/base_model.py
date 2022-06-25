@@ -11,7 +11,7 @@ class BaseModel(models.Model):
         User, on_delete=models.DO_NOTHING, related_name='%(app_label)s_%(class)s_created_by', db_index=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     updated_by = models.ForeignKey(
-        User, on_delete=models.DO_NOTHING, related_name='%(app_label)s_%(class)s_updated_by', db_index=False)
+        User, on_delete=models.DO_NOTHING, related_name='%(app_label)s_%(class)s_updated_by', db_index=False, null=True, blank=True)
 
     class Meta:
         abstract = True

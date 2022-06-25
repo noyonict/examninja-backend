@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from user_management.models import User
 
 
 class UserResource(resources.ModelResource):
@@ -51,7 +50,8 @@ class UserAdmin(ImportExportModelAdmin):
     fieldsets = (
         (_('Personal info'), {
             'classes': ('wide', 'extrapretty'),
-            'fields': (('full_name', 'nick_name'), ('phone_number', 'gender'), ('rank', 'user_marks'), ('present_address', 'user_experience'), 'last_active_at')
+            'fields': (('full_name', 'nick_name'), ('phone_number', 'gender'), ('rank', 'user_marks'), ('present_address', 'user_experience'), 
+            ('password_updated_at', 'last_active_at'))
         }),
         (_('Permissions'), {
             'classes': ('wide', 'collapse'),
@@ -69,7 +69,7 @@ class UserAdmin(ImportExportModelAdmin):
     list_editable = ('is_staff', )
     search_fields = ('phone_number', 'full_name', 'nick_name')
     ordering = ('date_joined',)
-    readonly_fields = ('date_joined', 'last_login')
+    readonly_fields = ('date_joined', 'last_login', 'password_updated_at', 'last_active_at')
     filter_horizontal = ('groups', 'user_permissions')
     actions = [
         'activate_users',
@@ -89,4 +89,3 @@ class UserAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(get_user_model(), UserAdmin)
-
