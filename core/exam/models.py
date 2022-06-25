@@ -1,5 +1,6 @@
 from django.db import models
 from utils.base_model import BaseModel
+from user_management.models import User
 
 
 class ExamTitle(BaseModel):
@@ -157,3 +158,61 @@ class BoardYear(BaseModel):
         # unique_together = [['driver', 'restaurant']]
         # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
         # # which app it belongs to
+
+
+class Question(BaseModel):
+    chapter = models.ForeignKey(Chapter, on_delete=models.DO_NOTHING)
+    uddipok = models.TextField()
+    question = models.TextField()
+    image = models.ImageField(upload_to="question/images/")
+    hints = models.TextField()
+    boards = models.ManyToManyField(BoardYear)
+
+    class Meta:
+        verbose_name_plural = "Questions"
+
+
+class QuestionComment(BaseModel):
+    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    comment = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = "Question Comments"
+
+
+class Answer(BaseModel):
+    value = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Answers"
+
+
+class QuestionAnswer(BaseModel):
+    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    answer = models.ForeignKey(Answer, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = "Question Answers"
+
+
+class QuestionPattern(BaseModel):
+    name = models.CharField(max_length=150)
+    chapter = models.ForeignKey(Chapter, on_delete=models.DO_NOTHING)
+    number_of_questions = models.PositiveSmallIntegerField()
+
+    class Meta:
+        verbose_name_plural = "Question Patterns"
+
+
+class Exam(BaseModel):
+    name = models.CharField(max_length=150)
+    exam_title = models.ForeignKey(ExamTitle, on_delete=models.DO_NOTHING)
+    subject = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
+    question_patterns = models.ManyToManyField(QuestionPattern)
+    number_of_questions = models.PositiveSmallIntegerField()
+    exam_cost = models.FloatField()
+    exam_procedure = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Exams"

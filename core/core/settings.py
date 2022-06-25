@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     # custom app
     'user_management',
     'exam',
+    'exam_history',
+    'managerial',
 
     # import export app
     'import_export'
