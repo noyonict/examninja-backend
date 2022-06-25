@@ -34,7 +34,8 @@ class ExamTitleModelAdmin(BaseModelAdmin):
     # paginator = Paginator
     # raw_id_fields = ('subject', 'chapter')
     # autocomplete_fields = ()
-    preserve_filters = True
+    # actions = ('set_item_to_published', 'set_item_to_unpublished', 'set_item_to_active', 'set_item_to_unactive')
+    # preserve_filters = True
     search_fields = ('name', 'expansion_of_name')
     readonly_fields = ('created_at', 'created_by', 'updated_at', 'updated_by')
     # exclude = ('created_at', 'created_by', 'updated_at', 'updated_by')
@@ -144,12 +145,31 @@ class SubjectCategoryModelAdmin(BaseModelAdmin):
     #     return actions
 
 
-
 admin.site.register(SubjectCategory, SubjectCategoryModelAdmin)
 
 
 class SubjectResource(resources.ModelResource):
 
+    def set_item_to_published(self, request, queryset):
+        count = queryset.update(is_published=True)
+        self.message_user(
+            request, '{} items have been published successfully.'.format(count))
+
+    def set_item_to_unpublished(self, request, queryset):
+        count = queryset.update(is_published=True)
+        self.message_user(
+            request, '{} items have been published successfully.'.format(count))
+
+    def set_item_to_active(self, request, queryset):
+        count = queryset.update(is_active=True)
+        self.message_user(
+            request, '{} items have been published successfully.'.format(count))
+
+    def set_item_to_unactive(self, request, queryset):
+        count = queryset.update(is_active=True)
+        self.message_user(
+            request, '{} items have been published successfully.'.format(count))
+    
     class Meta:
         model = Subject
 
@@ -220,3 +240,9 @@ admin.site.register(Subject, SubjectModelAdmin)
 admin.site.register(ChapterCategory)
 admin.site.register(Chapter)
 admin.site.register(BoardYear)
+admin.site.register(Question)
+admin.site.register(QuestionComment)
+admin.site.register(Answer)
+admin.site.register(QuestionAnswer)
+admin.site.register(QuestionPattern)
+admin.site.register(Exam)
