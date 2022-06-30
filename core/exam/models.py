@@ -38,7 +38,7 @@ class SubjectCategory(BaseModel):
     class Meta:
         db_table = 'subject_category'
         verbose_name = "Subject Category"  # A human-readable name for the object
-        verbose_name_plural = "2. Subject Categories"  # The plural name for the object
+        verbose_name_plural = "2.1. Subject Categories"  # The plural name for the object
         # The default ordering for the object
         ordering = ('sequence', 'created_at')
         # default_permissions = ('add', 'change', 'view')
@@ -63,7 +63,7 @@ class Subject(BaseModel):
     class Meta:
         db_table = 'subject'
         verbose_name = "Subject"  # A human-readable name for the object
-        verbose_name_plural = "3. Subjects"  # The plural name for the object
+        verbose_name_plural = "2.2. Subjects"  # The plural name for the object
         # The default ordering for the object
         ordering = ('sequence', 'created_at')
         # default_permissions = ('add', 'change', 'view')
@@ -88,7 +88,7 @@ class ChapterCategory(BaseModel):
     class Meta:
         db_table = 'chapter_category'
         verbose_name = "Chapter Category"  # A human-readable name for the object
-        verbose_name_plural = "4. Chapter Categories"  # The plural name for the object
+        verbose_name_plural = "3.1. Chapter Categories"  # The plural name for the object
         # The default ordering for the object
         ordering = ('sequence', 'created_at')
         # default_permissions = ('add', 'change', 'view')
@@ -114,7 +114,7 @@ class Chapter(BaseModel):
     class Meta:
         db_table = 'chapter'
         verbose_name = "Chapter"  # A human-readable name for the object
-        verbose_name_plural = "5. Chapters"  # The plural name for the object
+        verbose_name_plural = "3.2. Chapters"  # The plural name for the object
         # The default ordering for the object
         ordering = ('sequence', 'created_at')
         # default_permissions = ('add', 'change', 'view')
@@ -148,7 +148,7 @@ class BoardYear(BaseModel):
     class Meta:
         db_table = 'board_year'
         verbose_name = "Board"  # A human-readable name for the object
-        verbose_name_plural = "6. Boards"  # The plural name for the object
+        verbose_name_plural = "4. Boards"  # The plural name for the object
         # The default ordering for the object
         ordering = ('sequence', 'code', 'created_at')
         # default_permissions = ('add', 'change', 'view')
@@ -169,7 +169,18 @@ class Question(BaseModel):
     boards = models.ManyToManyField(BoardYear)
 
     class Meta:
-        verbose_name_plural = "Questions"
+        db_table = 'question'
+        verbose_name = "Question"  # A human-readable name for the object
+        verbose_name_plural = "5.1. Questions"  # The plural name for the object
+        # The default ordering for the object
+        ordering = ('sequence', 'created_at')
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
 
 
 class QuestionComment(BaseModel):
@@ -178,14 +189,36 @@ class QuestionComment(BaseModel):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     class Meta:
-        verbose_name_plural = "Question Comments"
+        db_table = 'question_comment'
+        verbose_name = "Question Comment"  # A human-readable name for the object
+        verbose_name_plural = "5.2. Question Comment"  # The plural name for the object
+        # The default ordering for the object
+        ordering = ('sequence', 'created_at')
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
 
 
 class Answer(BaseModel):
     value = models.TextField()
 
     class Meta:
-        verbose_name_plural = "Answers"
+        db_table = 'answere'
+        verbose_name = "Answere"  # A human-readable name for the object
+        verbose_name_plural = "6.1. Answeres"  # The plural name for the object
+        # The default ordering for the object
+        ordering = ('sequence', 'created_at')
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
 
 
 class QuestionAnswer(BaseModel):
@@ -193,7 +226,18 @@ class QuestionAnswer(BaseModel):
     answer = models.ForeignKey(Answer, on_delete=models.DO_NOTHING)
 
     class Meta:
-        verbose_name_plural = "Question Answers"
+        db_table = 'question_answer'
+        verbose_name = "Question Answer"  # A human-readable name for the object
+        verbose_name_plural = "6.2. Question Answers"  # The plural name for the object
+        # The default ordering for the object
+        ordering = ('sequence', 'created_at')
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
 
 
 class QuestionPattern(BaseModel):
@@ -202,7 +246,18 @@ class QuestionPattern(BaseModel):
     number_of_questions = models.PositiveSmallIntegerField()
 
     class Meta:
-        verbose_name_plural = "Question Patterns"
+        db_table = 'question_pattern'
+        verbose_name = "Question Pattern"  # A human-readable name for the object
+        verbose_name_plural = "6.3. Question Patterns"  # The plural name for the object
+        # The default ordering for the object
+        ordering = ('sequence', 'created_at')
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
 
 
 class Exam(BaseModel):
@@ -215,4 +270,15 @@ class Exam(BaseModel):
     exam_procedure = models.TextField()
 
     class Meta:
-        verbose_name_plural = "Exams"
+        db_table = 'exam'
+        verbose_name = "Exam"  # A human-readable name for the object
+        verbose_name_plural = "7. Exams"  # The plural name for the object
+        # The default ordering for the object
+        ordering = ('sequence', 'created_at')
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
