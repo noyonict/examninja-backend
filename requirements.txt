@@ -17,6 +17,7 @@ openpyxl==3.0.10
 Pillow==9.1.1
 promise==2.3
 pycodestyle==2.8.0
+python-dotenv==0.20.0
 PyJWT==2.4.0
 PyYAML==6.0
 Rx==1.6.1
