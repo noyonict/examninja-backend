@@ -13,7 +13,6 @@ class RegisterUser(graphene.Mutation):
     message = graphene.String()
 
     def mutate(root, info, data):
-        user_manager = UserManager()
         user = User(phone_number=data['phone_number'])
         user.set_password(data['password'])
         user.is_active = False

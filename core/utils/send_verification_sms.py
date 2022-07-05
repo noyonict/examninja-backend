@@ -16,3 +16,5 @@ def send_verification_sms(phone_number, verification_code):
         to=f"+88{phone_number}"
     )
     print(message.sid)
+
+    
