@@ -31,7 +31,7 @@ class UserManager(BaseUserManager):
         return self._create_user(phone_number, password, **extra_fields)
 
 
-GENDER_CHOICES = ((1, 'MALE'), (2, 'FEMALE'))
+GENDER_CHOICES = (('Male', 'MALE'), ('Female', 'FEMALE'))
 
 
 class User(AbstractUser):
