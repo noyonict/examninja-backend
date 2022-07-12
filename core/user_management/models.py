@@ -100,8 +100,25 @@ class UserVerification(models.Model):
 
     class Meta:
         db_table = 'user_verification'
-        verbose_name = "user_verification"  # A human-readable name for the object
-        verbose_name_plural = "user_verification"  # The plural name for the object
+        verbose_name = "User Verification"  # A human-readable name for the object
+        verbose_name_plural = "User Verification"  # The plural name for the object
+        # ordering = ('date_joined',)  # The default ordering for the object
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
+    
+class ResetPasswordVerification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    verification_code = models.CharField(max_length=4)
+
+    class Meta:
+        db_table = 'reset_password_verification'
+        verbose_name = "Reset Password Verification"  # A human-readable name for the object
+        verbose_name_plural = "Reset Password Verification"  # The plural name for the object
         # ordering = ('date_joined',)  # The default ordering for the object
         # default_permissions = ('add', 'change', 'view')
         # permissions = [('can_create_topic', 'Can create topic')]

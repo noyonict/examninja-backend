@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from user_management.models import UserVerification
+from user_management.models import UserVerification, ResetPasswordVerification
 
 
 class UserResource(resources.ModelResource):
@@ -92,3 +92,5 @@ class UserAdmin(ImportExportModelAdmin):
 admin.site.register(get_user_model(), UserAdmin)
 
 admin.site.register(UserVerification)
+
+admin.site.register(ResetPasswordVerification)

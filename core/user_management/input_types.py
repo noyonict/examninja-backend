@@ -11,3 +11,8 @@ class RegisterInput(InputObjectType):
 class VerificationInput(InputObjectType):
     phone_number = graphene.String(required=True)
     verification_code = graphene.String(required=True)
+
+class ResetPasswordInput(InputObjectType):
+    phone_number = graphene.String(required=True)
+    verification_code = graphene.String(required=True)
+    password = graphene.String(required=True)
