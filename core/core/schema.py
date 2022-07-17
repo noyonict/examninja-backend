@@ -1,10 +1,11 @@
 import graphene
 from user_management.schema import Mutation as AuthMutation
+from exam.schema import Query as ExamQuery
+from exam_history.schema import Query as ExamHistoryQuery
+from managerial.schema import Query as ManagerialQuery
 
-
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value="Hi!")
-
+class Query(ExamQuery, ExamHistoryQuery, ManagerialQuery):
+    pass
 
 class Mutation(AuthMutation):
     pass
