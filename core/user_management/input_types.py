@@ -1,4 +1,3 @@
-import imp
 from graphene import InputObjectType
 import graphene
 

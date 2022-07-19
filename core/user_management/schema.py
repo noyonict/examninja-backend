@@ -7,6 +7,7 @@ from utils.send_verification_sms import send_verification_sms, reset_password_ve
 from graphql import GraphQLError
 
 
+
 class RegisterUser(graphene.Mutation):
     class Arguments:
         data = RegisterInput(required=True)
