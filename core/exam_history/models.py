@@ -34,4 +34,4 @@ class FavoriteExam(BaseModel):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     class Meta:
-        verbose_name_plural = "Favorit Exams"
+        verbose_name_plural = "Favorite Exams"

@@ -31,7 +31,7 @@ class UserManager(BaseUserManager):
         return self._create_user(phone_number, password, **extra_fields)
 
 
-GENDER_CHOICES = ((1, 'MALE'), (2, 'FEMALE'))
+GENDER_CHOICES = (('Male', 'MALE'), ('Female', 'FEMALE'))
 
 
 class User(AbstractUser):
@@ -43,13 +43,15 @@ class User(AbstractUser):
     is_phone_number_verified = models.BooleanField(default=False)
     full_name = models.CharField(max_length=150, blank=True, null=True)
     nick_name = models.CharField(max_length=50, blank=True, null=True)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
-    password_updated_at = models.DateTimeField()
-    present_address = models.TextField()
-    user_experience = models.PositiveIntegerField(default=0)
-    user_marks = models.PositiveIntegerField(default=0)
+    gender = models.CharField(
+        max_length=6, choices=GENDER_CHOICES, blank=True, null=True)
+    password_updated_at = models.DateTimeField(null=True, blank=True)
+    present_address = models.TextField(blank=True, null=True)
+    user_experience = models.PositiveIntegerField(
+        default=0, blank=True, null=True)
+    user_marks = models.PositiveIntegerField(default=0, blank=True, null=True)
     rank = models.PositiveIntegerField(null=True, blank=True)
-    last_active_at = models.DateTimeField()
+    last_active_at = models.DateTimeField(null=True, blank=True)
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = []
     objects = UserManager()
@@ -82,6 +84,41 @@ class PermissionAdmin(admin.ModelAdmin):
         db_table = 'user_permission'
         verbose_name = "user_permission"  # A human-readable name for the object
         verbose_name_plural = "user_permissions"  # The plural name for the object
+        # ordering = ('date_joined',)  # The default ordering for the object
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
+
+
+class UserVerification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    verification_code = models.CharField(max_length=4)
+
+    class Meta:
+        db_table = 'user_verification'
+        verbose_name = "User Verification"  # A human-readable name for the object
+        verbose_name_plural = "User Verification"  # The plural name for the object
+        # ordering = ('date_joined',)  # The default ordering for the object
+        # default_permissions = ('add', 'change', 'view')
+        # permissions = [('can_create_topic', 'Can create topic')]
+        # order_with_respect_to = 'question'  # Makes this object orderable with respect to the given field,
+        # # usually a ForeignKey
+        # unique_together = [['driver', 'restaurant']]
+        # app_label = 'myapp'  # If a model is defined outside of an application in INSTALLED_APPS, it must declare
+        # # which app it belongs to
+    
+class ResetPasswordVerification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    verification_code = models.CharField(max_length=4)
+
+    class Meta:
+        db_table = 'reset_password_verification'
+        verbose_name = "Reset Password Verification"  # A human-readable name for the object
+        verbose_name_plural = "Reset Password Verification"  # The plural name for the object
         # ordering = ('date_joined',)  # The default ordering for the object
         # default_permissions = ('add', 'change', 'view')
         # permissions = [('can_create_topic', 'Can create topic')]
